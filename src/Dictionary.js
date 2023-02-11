@@ -5,31 +5,46 @@ import "./Dictionary.css"
 
 
 export default function Dictionary(){
-    let [keyword, setKeyword] = useState("");
+    let [keyword, setKeyword] = useState("coding");
     let [results, setResults] = useState("");
+    let [loaded, setLoaded] = useState(false);
 
 function handleResponse(response) {
     setResults(response.data[0]);
 }
+function search(){
+ //documentation: https://dictionaryapi.dev/
+ let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
+ axios.get(apiUrl).then(handleResponse);
+}
 
-function search(event){
+function handleSubmit(event){
     event.preventDefault();
-
-    //documentation: https://dictionaryapi.dev/
-    let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
-    axios.get(apiUrl).then(handleResponse);
+    search();
 }
 
 function keywordChange(event){
     setKeyword(event.target.value);
-
+}
+function load(){
+    setLoaded(true);
+    search();
 }
 
-
-    return <div className="Dictionary">
-        <form onSubmit={search}>
-            <input type="search" onChange={keywordChange} />
-            <Results results={results}/>
+if(loaded){
+return( 
+   <div className="Dictionary">
+     <section>
+        <p>What word do you want to look up?</p>
+        <form onSubmit={handleSubmit}> 
+            <input type="search" placeholder="Coding" onChange={keywordChange} />           
+            <Results results={results}/>          
         </form>
-    </div>
+         </section>
+    </div>);
+} else{
+    load();
+    return"Loading"
+}
+   
 }
