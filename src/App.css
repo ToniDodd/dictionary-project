@@ -9,9 +9,11 @@ body{
 footer{
   color: rgb(1, 1, 1);
   margin: 50px;
+  font-weight: bold;
 }
 footer a{
   color: #24405b;
+  
 }
 .container{
   background: #eff2f7;

@@ -7,15 +7,15 @@ export default function Photos(props){
        return(
        <section className="Photos">
         <div className="row">
-        {props.photos.map(function(photo, index){
+          {props.photos.map(function(photo, index){
             return(
-                <div className="col-4"key={index}>
+              <div className="col-4"key={index}>
                 <a href={photo.src.original} target="_blank" rel="noreferrer">
-                <img alt={photo.alt} src={photo.src.landscape} className="img-fluid" />
+                  <img alt={photo.alt} src={photo.src.landscape} className="img-fluid" />
                 </a>
-                </div>
+              </div>
             )
-        })}
+          })}
         </div>
        </section>
         ); 

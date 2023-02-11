@@ -17,7 +17,6 @@ function handleResponse(response) {
 
 function getPhotos(response){
     setPhotos(response.data.photos);
-
 }
 
 function search(){
@@ -26,7 +25,7 @@ function search(){
  axios.get(apiUrl).then(handleResponse);
 
  let pexelsApiKey = "1spsDNaFsK52l1ZtgfjT6HXqpbXW2jC5V2UhOtiRt0JmOBRGkgW5K9Xu"
- let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=9`
+ let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=12`
  axios.get(pexelsApiUrl,{ headers: {"Authorization" : `Bearer${pexelsApiKey}`}}).then(getPhotos);
 }
 
@@ -38,6 +37,7 @@ function handleSubmit(event){
 function keywordChange(event){
     setKeyword(event.target.value);
 }
+
 function load(){
     setLoaded(true);
     search();
